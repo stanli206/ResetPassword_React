@@ -9,7 +9,7 @@ const ForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5002/api/users/forgot-password", { email }); 
+      const res = await axios.post("http://localhost:5002/api/users/forgot-password", { email });
       setMessage(res.data.message);
       setError("");
     } catch (err) {
@@ -17,28 +17,25 @@ const ForgotPassword = () => {
       setMessage("");
     }
   };
-  
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-center">Forgot Password</h2>
-        {message && <p className="text-green-500 text-center">{message}</p>}
-        {error && <p className="text-red-500 text-center">{error}</p>}
+    <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+      <div className="card p-4 shadow w-100" style={{ maxWidth: "400px" }}>
+        <h2 className="text-center">Forgot Password</h2>
+        {message && <p className="text-success text-center">{message}</p>}
+        {error && <p className="text-danger text-center">{error}</p>}
 
-        <form onSubmit={handleSubmit} className="mt-4">
+        <form onSubmit={handleSubmit} className="mt-3">
           <input
             type="email"
             name="email"
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2 mb-3 border rounded"
+            className="form-control mb-3"
             required
           />
-          <button className="w-full p-2 text-white bg-blue-500 rounded hover:bg-blue-600">
-            Send Reset Link
-          </button>
+          <button className="btn btn-primary w-100">Send Reset Link</button>
         </form>
       </div>
     </div>

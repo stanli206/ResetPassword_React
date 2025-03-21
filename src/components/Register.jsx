@@ -8,17 +8,12 @@ const Register = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
+  const handleChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "http://localhost:5002/api/users/register",
-        user
-      ); 
+      const res = await axios.post("http://localhost:5002/api/users/register", user);
       setMessage(res.data.message);
       setError("");
       setTimeout(() => navigate("/"), 1000);
@@ -29,42 +24,17 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-center">Register</h2>
-        {message && <p className="text-green-500 text-center">{message}</p>}
-        {error && <p className="text-red-500 text-center">{error}</p>}
-        <form onSubmit={handleSubmit} className="mt-4">
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            value={user.name}
-            onChange={handleChange}
-            className="w-full p-2 mb-3 border rounded"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={user.email}
-            onChange={handleChange}
-            className="w-full p-2 mb-3 border rounded"
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={user.password}
-            onChange={handleChange}
-            className="w-full p-2 mb-3 border rounded"
-            required
-          />
-          <button className="w-full p-2 text-white bg-blue-500 rounded hover:bg-blue-600">
-            Register
-          </button>
+    <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+      <div className="card p-4 shadow w-100" style={{ maxWidth: "400px" }}>
+        <h2 className="text-center">Register</h2>
+        {message && <p className="text-success text-center">{message}</p>}
+        {error && <p className="text-danger text-center">{error}</p>}
+
+        <form onSubmit={handleSubmit} className="mt-3">
+          <input type="text" name="name" placeholder="Full Name" value={user.name} onChange={handleChange} className="form-control mb-3" required />
+          <input type="email" name="email" placeholder="Email" value={user.email} onChange={handleChange} className="form-control mb-3" required />
+          <input type="password" name="password" placeholder="Password" value={user.password} onChange={handleChange} className="form-control mb-3" required />
+          <button className="btn btn-primary w-100">Register</button>
         </form>
       </div>
     </div>
