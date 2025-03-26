@@ -4,7 +4,7 @@
 
 ## 🛠️ Tech Stack  
 - ⚛️ React.js  
-- 🎨 Tailwind CSS  
+- 🎨 Bootstrap  
 - 🌐 Axios  
 - 🔄 React Router  
 
