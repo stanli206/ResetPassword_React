@@ -12,7 +12,14 @@ const Login = () => {
   const firework = () => {
     const duration = 4 * 1000;
     const animationEnd = Date.now() + duration;
-    const colors = ["#ff0000", "#ff7300", "#fffb00", "#00ff00", "#0080ff", "#8000ff"];
+    const colors = [
+      "#ff0000",
+      "#ff7300",
+      "#fffb00",
+      "#00ff00",
+      "#0080ff",
+      "#8000ff",
+    ];
 
     const frame = () => {
       if (Date.now() > animationEnd) return;
@@ -31,21 +38,28 @@ const Login = () => {
     frame();
   };
 
-  const handleChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setUser({ ...user, [e.target.name]: e.target.value });
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5002/api/users/login", user);
+      const res = await axios.post(
+        "https://reset-password-flow-task.onrender.com/api/users/login",
+        user
+      );
+      localStorage.setItem("authToken", res.data.token); // Save JWT token
       setMessage(res.data.message);
       setError("");
       firework();
-      setTimeout(() => navigate("/"), 3500);
+      setTimeout(() => navigate("/home"), 3500); // Redirect to Home page
     } catch (err) {
       setError(err.response?.data?.message || "Invalid credentials");
       setMessage("");
     }
   };
+  
 
   return (
     <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
@@ -55,17 +69,40 @@ const Login = () => {
         {error && <p className="text-danger text-center">{error}</p>}
 
         <form onSubmit={handleSubmit} className="mt-3">
-          <input type="email" name="email" placeholder="Email" value={user.email} onChange={handleChange} className="form-control mb-3" required />
-          <input type="password" name="password" placeholder="Password" value={user.password} onChange={handleChange} className="form-control mb-3" required />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={user.email}
+            onChange={handleChange}
+            className="form-control mb-3"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={user.password}
+            onChange={handleChange}
+            className="form-control mb-3"
+            required
+          />
           <button className="btn btn-primary w-100">Login</button>
         </form>
 
         <div className="text-center mt-3">
-          <Link to="/forgot-password" className="text-primary">Forgot Password?</Link>
+          <Link to="/forgot-password" className="text-primary">
+            Forgot Password?
+          </Link>
         </div>
 
         <div className="text-center mt-2">
-          <p>Don't have an account? <Link to="/register" className="text-primary">Register</Link></p>
+          <p>
+            Don't have an account?{" "}
+            <Link to="/register" className="text-primary">
+              Register
+            </Link>
+          </p>
         </div>
       </div>
     </div>

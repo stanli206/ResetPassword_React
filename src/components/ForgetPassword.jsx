@@ -9,7 +9,7 @@ const ForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5002/api/users/forgot-password", { email });
+      const res = await axios.post("https://reset-password-flow-task.onrender.com/api/users/forgot-password", { email });//http://localhost:5002
       setMessage(res.data.message);
       setError("");
     } catch (err) {

@@ -13,7 +13,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5002/api/users/register", user);
+      const res = await axios.post("https://reset-password-flow-task.onrender.com/api/users/register", user);
       setMessage(res.data.message);
       setError("");
       setTimeout(() => navigate("/"), 1000);

@@ -32,7 +32,7 @@ const ResetPassword = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:5002/api/users/reset-password/${token}`,
+        `https://reset-password-flow-task.onrender.com/api/users/reset-password/${token}`,
         { newPassword },
         { headers: { Authorization: `Bearer ${authToken}` } } // Send auth token
       );
@@ -59,7 +59,10 @@ const ResetPassword = () => {
 
   return (
     <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
-      <div className="card p-4 shadow-lg" style={{ maxWidth: "400px", width: "100%" }}>
+      <div
+        className="card p-4 shadow-lg"
+        style={{ maxWidth: "400px", width: "100%" }}
+      >
         <h2 className="text-center">Reset Password</h2>
         {message && <p className="text-success text-center">{message}</p>}
         {error && <p className="text-danger text-center">{error}</p>}
