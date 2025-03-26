@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      const token = localStorage.getItem("authToken");
+      if (!token) {
+        alert("Please login and try again!"); // Show alert before redirect
+        navigate("/"); // Redirect to Login page
+      }
+    }, [navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem("authToken"); //  token clear
+    localStorage.removeItem("authToken"); // Clear token
     navigate("/"); // Redirect to Login page
   };
 
