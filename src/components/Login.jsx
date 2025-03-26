@@ -46,7 +46,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://reset-password-flow-task.onrender.com/api/users/login",
+        "https://resetpasswordtask.netlify.app/api/users/login",
         user
       );
       localStorage.setItem("authToken", res.data.token); // Save JWT token
