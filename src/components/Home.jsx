@@ -7,7 +7,7 @@ const Home = () => {
     useEffect(() => {
       const token = localStorage.getItem("authToken");
       if (!token) {
-        alert("Please login and try again!"); // Show alert before redirect
+        alert("Please login and try again!"); 
         navigate("/"); // Redirect to Login page
       }
     }, [navigate]);
