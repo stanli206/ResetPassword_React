@@ -32,7 +32,7 @@ const ResetPassword = () => {
 
     try {
       const res = await axios.post(
-        `https://resetpasswordtask.netlify.app/api/users/reset-password/${token}`,
+        `https://reset-password-flow-task.onrender.com/api/users/reset-password/${token}`,
         { newPassword },
         { headers: { Authorization: `Bearer ${authToken}` } } // Send auth token
       );

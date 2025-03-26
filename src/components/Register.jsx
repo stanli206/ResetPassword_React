@@ -13,7 +13,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://resetpasswordtask.netlify.app/api/users/register", user);/// https://reset-password-flow-task.onrender.com
+      const res = await axios.post("https://reset-password-flow-task.onrender.com/api/users/register", user);//https://resetpasswordtask.netlify.app/
       setMessage(res.data.message);
       setError("");
       setTimeout(() => navigate("/"), 1000);

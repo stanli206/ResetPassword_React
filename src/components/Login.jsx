@@ -10,7 +10,7 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const firework = () => {
-    const duration = 4 * 1000;
+    const duration = 3 * 1000;
     const animationEnd = Date.now() + duration;
     const colors = [
       "#ff0000",
@@ -41,25 +41,23 @@ const Login = () => {
   const handleChange = (e) =>
     setUser({ ...user, [e.target.name]: e.target.value });
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://resetpasswordtask.netlify.app/api/users/login",
+        "https://reset-password-flow-task.onrender.com/api/users/login",
         user
       );
       localStorage.setItem("authToken", res.data.token); // Save JWT token
       setMessage(res.data.message);
       setError("");
       firework();
-      setTimeout(() => navigate("/home"), 3500); // Redirect to Home page
+      setTimeout(() => navigate("/home"), 500); // Redirect to Home page
     } catch (err) {
       setError(err.response?.data?.message || "Invalid credentials");
       setMessage("");
     }
   };
-  
 
   return (
     <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
